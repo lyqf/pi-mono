@@ -1,0 +1,56 @@
+{
+	"name": "@earendil-works/pi-organization-agent",
+	"version": "0.74.0",
+	"description": "Organization runtime primitives for multi-agent task planning and coordination",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md",
+		"docs/PRODUCT_INTRODUCTION.md",
+		"docs/PRODUCT_USER_GUIDE.md",
+		"scripts/send-pi-telemetry.mjs"
+	],
+	"scripts": {
+		"clean": "shx rm -rf dist",
+		"build": "tsgo -p tsconfig.build.json && shx chmod +x dist/cli.js dist/memory-bridge-cli.js",
+		"dev": "tsgo -p tsconfig.build.json --watch --preserveWatchOutput",
+		"test": "vitest --run",
+		"verify": "npm run build && vitest --run",
+		"test:integration-memory": "vitest --run test/http-memory-persistence.integration.test.ts",
+		"send-pi-telemetry": "node ./scripts/send-pi-telemetry.mjs",
+		"prepublishOnly": "npm run clean && npm run build"
+	},
+	"keywords": [
+		"ai",
+		"agent",
+		"organization",
+		"task-graph"
+	],
+	"author": "Mario Zechner",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/earendil-works/pi-mono.git",
+		"directory": "packages/organization-agent"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^24.3.0",
+		"shx": "^0.4.0",
+		"typescript": "^5.7.3",
+		"vitest": "^3.2.4"
+	},
+	"bin": {
+		"agent-company": "./dist/cli.js",
+		"agent-company-memory-bridge": "./dist/memory-bridge-cli.js",
+		"agent-company-pi-telemetry": "./scripts/send-pi-telemetry.mjs"
+	},
+	"dependencies": {
+		"@earendil-works/pi-agent-core": "^0.74.0",
+		"@modelcontextprotocol/sdk": "^1.29.0"
+	}
+}

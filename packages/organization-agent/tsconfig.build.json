@@ -1,0 +1,13 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"paths": {
+			"@earendil-works/pi-ai": ["../ai/src/index.ts"],
+			"@earendil-works/pi-agent-core": ["../agent/src/index.ts"]
+		}
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules", "dist", "**/*.d.ts", "src/**/*.d.ts"]
+}
